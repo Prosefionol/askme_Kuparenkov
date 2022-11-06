@@ -1,0 +1,105 @@
+.StandardButton{
+background: #198754;
+width: 90px ;
+height:25px;
+border: 1px solid #000000;
+margin: 5px;
+text-align:center;
+font-size: 16px;
+border-radius: 3px;
+color:white;
+}
+
+img{
+max-width: 100%;
+width: 100%;
+height: 100%;
+object-fit:cover;
+border-radius: 50px;
+border: 2px solid gray;
+overflow: hidden;
+}
+
+.ContainerBlack{
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+color:white;
+}
+
+.ContainerWhite{
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+color:black;
+}
+
+.container_q{
+padding: 80px 15px 0;
+margin-left: 40px;
+}
+
+.container_t{
+margin-top: 10px;
+margin-right: 130px;
+margin-left: 80px;
+text-align: left;
+}
+
+.HeaderTextSmall{
+font-size:16px;
+padding-right:15px;
+}
+
+.avatar_50{
+width: 50px;
+height:50px;
+}
+
+.avatar_100{
+width: 100px;
+height:100px;
+}
+
+.avatar_150{
+width: 150px;
+height:150px;
+}
+
+.likeCount{
+width: 38px;
+height:38px;
+margin:20px;
+font-size: 20px;
+text-align:center;
+border: 2px solid gray;
+border-radius: 5px;
+}
+
+.qtag{
+width: 100%;
+height:38px;
+margin-top:20px;
+font-size: 20px;
+text-align:left;
+}
+
+.question{
+width: 852px;
+height:200px;
+margin-top:20px;
+margin-bottom:20px;
+border: 2px solid gray;
+padding: 20px;
+border-radius: 8px;
+overflow:hidden;
+}
+
+.questionBig{
+ width: 852px;
+  height:280px;
+margin-top:20px;
+margin-bottom:30px;
+padding: 20px;
+overflow:hidden;
+}
