@@ -13,7 +13,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <div class="row" style="width: 1920px;">
+            <div class="row" style="width: 100%;">
                 <div class="col-3">
                     <h2><a href = "index.html">AskVK</a></h2>
                 </div>
@@ -59,39 +59,41 @@
             <div class="col-8" style=" margin-top:30px;">
                 <h1>Registration</h1>
                 <h5 style="color:red; margin-top:20px; margin-bottom: 20px">Some mistakes!</h5>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput0" class="form-label">Login</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput0"
-                           placeholder="Username">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                           placeholder="*@*.*">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput2" class="form-label">Nickname</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput2"
-                           placeholder="Nickname">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput3" class="form-label">Password</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput3"
-                           placeholder="******">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput4" class="form-label">Repeat password</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput4"
-                           placeholder="******">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput5" class="form-label">Upload Avatar</label>
-                    <input type="file" class="form-control" id="exampleFormControlInput5"
-                           placeholder="c:\avatar.jpg">
-                </div>
-                <div class="ContainerWhite">
-                    <div class="StandardButton">Register!</div>
-                </div>
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput0" class="form-label">Login</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput0"
+                               placeholder="Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                               placeholder="*@*.*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Nickname</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput2"
+                               placeholder="Nickname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Password</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput3"
+                               placeholder="******">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput4" class="form-label">Repeat password</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput4"
+                               placeholder="******">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput5" class="form-label">Upload Avatar</label>
+                        <input type="file" class="form-control" id="exampleFormControlInput5"
+                               placeholder="c:\avatar.jpg">
+                    </div>
+                    <div class="ContainerWhite">
+                        <button type="submit" class="btn btn-primary">Register!</button>
+                    </div>
+                </form>
             </div>
             <div class="col-4" style="padding-right: 2px;">
                 <div class="container_t" style="margin-bottom:20px;">

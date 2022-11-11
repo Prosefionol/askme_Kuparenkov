@@ -13,7 +13,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <div class="row" style="width: 1920px;">
+            <div class="row" style="width: 100%;">
                 <div class="col-3">
                     <h2><a href = "index.html">AskVK</a></h2>
                 </div>
@@ -160,12 +160,25 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                </div>
                 <div class="mb-3 pb-2 mb-4  border-top border-3 border-secondary"
                      style="padding-top:30px; margin-top:30px; width: 852px;">
-                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="6"
-                              placeholder="Enter your answer here..."></textarea>
+                    <form>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="exampleFormControlTextarea2" rows="6"
+                                      placeholder="Enter your answer here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Answer!</button>
+                    </form>
                 </div>
-                <div class="StandardButton">Answer!</div>
             </div>
             <div class="col-4" style="padding-right: 2px;">
                 <div class="container_t" style="margin-bottom:20px;">
