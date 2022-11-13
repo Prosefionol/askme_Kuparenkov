@@ -1,57 +1,6 @@
-<!doctype html>
-<html lang="en" class="h-100">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>QuestionPage</title>
-    <link href="../static/css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="../static/css/style.css" rel="stylesheet">
-</head>
-<body class="d-flex flex-column h-100">
-<header>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-            <div class="row" style="width: 100%;">
-                <div class="col-3">
-                    <h2><a href = "index.html">AskVK</a></h2>
-                </div>
-                <div class="col-7" style="margin-top:4px;">
-                    <div class="row">
-                        <div class="col-4">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarCollapse">
-                                <form class="d-flex" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search"
-                                           aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">SEARCH!</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-8">
-                            <button onclick="document.location = 'ask.html'" class="btn btn-outline-success" type="button">ASK!</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="row" style="  margin: 10px;">
-                        <div class="col-6">
-                            <div class="fs-6"><a href = "register.html">Register</a></div>
-                        </div>
-                        <div class="col-6">
-                            <div class="fs-6"><a href = "login.html">Log in</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
+{% extends "inc/base.html" %}
+{% load static %}
+{% block content %}
 <!-- Begin page content -->
 <main class="flex-shrink-0">
     <div class="container_q">
@@ -61,20 +10,20 @@
                     <div class="row">
                         <div class="col-2" style="padding: 0px;">
                             <div class="avatar_150">
-                                <img src="../static/img/avatar-1.jpg" alt=""/>
+                                <img src="{% static question.img %}" alt=""/>
                             </div>
                         </div>
                         <div class="col-10">
-                            <h2 class="question-title" style="margin-left: 15px">Question 1</h2>
+                            <h2 class="question-title" style="margin-left: 15px">{{ question.title }}</h2>
                             <div class="question-text" style="margin-left: 15px">
-                                Text voprosa nomer 1
+                                {{ question.text }}
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4" style="padding: 0px;">
                             <div class="ContainerWhite">
-                                <div class="likeCount">1</div>
+                                <div class="likeCount">{{ question.likes }}</div>
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
                                      style="margin:20px;">
                                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1"
@@ -87,88 +36,14 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <div class="qtag">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <h5 style="margin-top:10px;">Tags:</h5>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Tag1</a>
-                                    </li>
-                                    </li>
-                                </ul>
-                            </div>
+                            {% include "inc/tag_item.html" %}
                         </div>
                     </div>
                 </div>
-                <div class="question">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="avatar_100">
-                                <img src="../static/img/avatar-2.jpg" alt=""/>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <div class="question-text">
-                                Text otveta nomer 1
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ContainerWhite">
-                        <div class="likeCount">1</div>
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
-                             style="margin-top:20px; padding-bottom:30px;">
-                            <input type="radio" class="btn-check" name="btnradio1" id="btnradio3" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio3">Like</label>
-                            <input type="radio" class="btn-check" name="btnradio1" id="btnradio4" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio4">Dislike</label>
-                        </div>
-                        <div class="form-check" style="margin-left: 30px; margin-top: 25px">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Correct
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="question">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="avatar_100">
-                                <img src="../static/img/avatar-2.jpg" alt=""/>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <div class="question-text">
-                                Text otveta nomer 2
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ContainerWhite ">
-                        <div class="likeCount">2</div>
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
-                             style="margin-top:20px; padding-bottom:30px;">
-                            <input type="radio" class="btn-check" name="btnradio2" id="btnradio5" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio5">Like</label>
-                            <input type="radio" class="btn-check" name="btnradio2" id="btnradio6" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio6">Dislike</label>
-                        </div>
-                        <div class="form-check" style="margin-left: 30px; margin-top: 25px">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-                            <label class="form-check-label" for="flexCheckDefault1">
-                                Correct
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                </div>
+                {% for answer in answers %}
+                    {% include "inc/answer_item.html" %}
+                {% endfor %}
+                {% include "inc/paginator.html" %}
                 <div class="mb-3 pb-2 mb-4  border-top border-3 border-secondary"
                      style="padding-top:30px; margin-top:30px; width: 852px;">
                     <form>
@@ -180,35 +55,4 @@
                     </form>
                 </div>
             </div>
-            <div class="col-4" style="padding-right: 2px;">
-                <div class="container_t" style="margin-bottom:20px;">
-                    <h1>Popular tags</h1>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Tag0</li>
-                        <li class="list-group-item">Tag1</li>
-                        <li class="list-group-item">Tag2</li>
-                        <li class="list-group-item">Tag3</li>
-                        <li class="list-group-item">Tag4</li>
-                    </ul>
-                </div>
-                <div class="container_t" style="margin-bottom:20px;">
-                    <h1>Best members</h1>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Admin</li>
-                        <li class="list-group-item">User0</li>
-                        <li class="list-group-item">User1</li>
-                        <li class="list-group-item">User2</li>
-                        <li class="list-group-item">User3</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-<footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-        <span class="text-muted">Kuparenkov Ilya ANDR-11</span>
-    </div>
-</footer>
-</body>
-</html>
+{% endblock %}

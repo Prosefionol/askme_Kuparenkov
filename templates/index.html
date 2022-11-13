@@ -1,6 +1,5 @@
 {% extends "inc/base.html" %}
 {% load static %}
-
 {% block content %}
 <!-- Begin page content -->
 <main class="flex-shrink-0">
@@ -11,147 +10,9 @@
         </div>
         <div class="row" style="margin-left: 4px">
             <div class="col-8">
-                <div class="question">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="avatar_100">
-                                <img src="{% static "img/avatar-1.jpg" %}" alt=""/>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <h2 class="question-title"><a href = "question.html">Question 1</a></h2>
-                            <div class="question-text">
-                                Text voprosa nomer 1
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <div class="likeCount">1</div>
-                        </div>
-                        <div class="col-3 ">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
-                                 style="margin-top:20px;">
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio1">Like</label>
-                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio2">Dislike</label>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <a class="nav-link active" aria-current="page" href="question.html" style="margin-top: 30px">answer(1)</a>
-                        </div>
-                        <div class="col-5">
-                            <div class="qtag">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <h5 style="margin-top:10px;">Tags:</h5>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Tag1</a>
-                                    </li>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="question">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="avatar_100">
-                                <img src="{% static "img/avatar-2.jpg" %}" alt=""/>
-                            </div>
-                        </div>
-                        <div class="col-10" style=>
-                            <h2 class="question-title"><a href = "question.html">Question 2</a></h2>
-                            <div class="question-text">
-                                Text voprosa nomer 2
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <div class="likeCount">2</div>
-                        </div>
-                        <div class="col-3">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
-                                 style="margin-top:20px;">
-                                <input type="radio" class="btn-check" name="btnradio1" id="btnradio3" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio3">Like</label>
-                                <input type="radio" class="btn-check" name="btnradio1" id="btnradio4" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio4">Dislike</label>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <a class="nav-link active" aria-current="page" href="question.html" style="margin-top: 30px">answer(2)</a>
-                        </div>
-                        <div class="col-5">
-                            <div class="qtag">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <h5 style="margin-top:10px;">Tags:</h5>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Tag1</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Tag2</a>
-                                    </li>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="question">
-                    <div class="row">
-                        <div class="col-2">
-                            <div class="avatar_100">
-                                <img src="{% static "img/avatar-3.jpg" %}" alt=""/>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <h2 class="question-title"><a href = "question.html">Question 3</a></h2>
-                            <div class="question-text">
-                                Text voprosa nomer 3
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <div class="likeCount">3</div>
-                        </div>
-                        <div class="col-3">
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
-                                 style="margin-top:20px;">
-                                <input type="radio" class="btn-check" name="btnradio2" id="btnradio5" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio5">Like</label>
-                                <input type="radio" class="btn-check" name="btnradio2" id="btnradio6" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio6">Dislike</label>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <a class="nav-link active" aria-current="page" href="question.html" style="margin-top: 30px">answer(3)</a>
-                        </div>
-                        <div class="col-5">
-                            <div class="qtag">
-                                <ul class="nav">
-                                    <li class="nav-item">
-                                        <h5 style="margin-top:10px;">Tags:</h5>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Tag1</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Tag2</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Tag3</a>
-                                    </li>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% for question in questions %}
+                    {% include "inc/question_item.html" %}
+                {% endfor %}
                 {% include "inc/paginator.html" %}
             </div>
 {% endblock %}

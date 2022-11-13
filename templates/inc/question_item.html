@@ -1,0 +1,36 @@
+{% load static %}
+<div class="question">
+    <div class="row">
+        <div class="col-2">
+            <div class="avatar_100">
+                <img src="{% static question.img %}" alt=""/>
+            </div>
+        </div>
+        <div class="col-10">
+            <h2 class="question-title"><a href = "{% url 'question' question_id=question.id %}">{{ question.title }}</a></h2>
+            <div class="question-text">
+                {{ question.text }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <div class="likeCount">{{ question.likes }}</div>
+        </div>
+        <div class="col-3 ">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
+                 style="margin-top:20px;">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio1">Like</label>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">Dislike</label>
+            </div>
+        </div>
+        <div class="col-3">
+            <a class="nav-link active" aria-current="page" href="{% url 'question' question_id=question.id %}" style="margin-top: 30px">answer({{ question.answers }})</a>
+        </div>
+        <div class="col-5">
+            {% include "inc/tag_item.html" %}
+        </div>
+    </div>
+</div>

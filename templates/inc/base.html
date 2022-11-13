@@ -42,7 +42,11 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    {% include "inc/authorized.html" %}
+                    {% if request.user.is_authorized %}
+                        {% include "inc/authorized.html" %}
+                    {% else %}
+                        {% include "inc/unauthorized.html" %}
+                    {% endif %}
                 </div>
             </div>
         </div>
