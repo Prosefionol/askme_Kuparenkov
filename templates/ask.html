@@ -11,16 +11,16 @@
                 <form>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                               placeholder="Title">
+                        <input type="text" maxlength="25" class="form-control" id="exampleFormControlInput1"
+                               placeholder="Title" required>
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea2" class="form-label">Text</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="6"></textarea>
+                        <textarea class="form-control" maxlength="200" id="exampleFormControlTextarea2" rows="6"  required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput3" class="form-label">Tags</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput3"
+                        <input type="text" maxlength="25" class="form-control" id="exampleFormControlInput3"
                                placeholder="Tags">
                     </div>
                     <button type="submit" class="btn btn-primary">Ask!</button>
