@@ -9,6 +9,11 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
+def hotq(request):
+    context = {'questions': models.QUESTIONS, 'page_obj': listing(request, models.QUESTIONS)}
+    return render(request, 'hotq.html', context=context)
+
+
 def question(request, question_id: int):
     if question_id >= len(models.QUESTIONS):
         context_a = {'maxsize': len(models.QUESTIONS)}
@@ -18,6 +23,11 @@ def question(request, question_id: int):
         context_b = {'question': question_item, 'answers': models.ANSWERS,
                      'page_obj': listing(request, models.ANSWERS)}
         return render(request, 'question.html', context=context_b)
+
+
+def tag(request, tag_id: str):
+    context = {'tag': tag_id, 'questions': models.QUESTIONS, 'page_obj': listing(request, models.QUESTIONS)}
+    return render(request, 'tag.html', context=context)
 
 
 def ask(request):
@@ -30,6 +40,10 @@ def login(request):
 
 def register(request):
     return render(request, 'register.html')
+
+
+def settings(request):
+    return render(request, 'settings.html')
 
 
 def listing(request, pagList):

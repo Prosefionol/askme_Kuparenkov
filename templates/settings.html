@@ -1,0 +1,37 @@
+{% extends "inc/base.html" %}
+{% load static %}
+{% block content %}
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container_q">
+        <div class="row" style="margin-left:60px;">
+            <div class="col-8" style=" margin-top:30px;">
+                <h1>Settings: Admin</h1>
+                <h5 style="color:red; margin-top:20px; margin-bottom: 20px">Some mistakes!</h5>
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput0" class="form-label">Login</label>
+                        <input type="text" maxlength="25" class="form-control" id="exampleFormControlInput0"
+                               placeholder="Login">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="email" maxlength="100" class="form-control" id="exampleFormControlInput1"
+                               placeholder="*@*.*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Nickname</label>
+                        <input type="text" maxlength="25" class="form-control" id="exampleFormControlInput2"
+                               placeholder="Nickname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput5" class="form-label">Upload Avatar</label>
+                        <input type="file" class="form-control" id="exampleFormControlInput5"
+                               placeholder="c:\avatar.jpg">
+                    </div>
+                    <div class="ContainerWhite">
+                        <button type="submit" class="btn btn-primary">Save changes!</button>
+                    </div>
+                </form>
+            </div>
+{% endblock %}

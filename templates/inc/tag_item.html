@@ -5,7 +5,7 @@
             <h5 style="margin-top:10px;">Tags:</h5>
                 {% for tag in question.tags %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Tag</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'tag' tag_id='Tag' %}">Tag</a>
                 </li>
                 {% endfor %}
         </li>
