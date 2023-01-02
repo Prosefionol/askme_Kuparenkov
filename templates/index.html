@@ -10,7 +10,7 @@
         </div>
         <div class="row" style="margin-left: 4px">
             <div class="col-8">
-                {% for question in questions %}
+                {% for question in page_obj %}
                     {% include "inc/question_item.html" %}
                 {% endfor %}
                 {% include "inc/paginator.html" %}

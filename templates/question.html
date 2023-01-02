@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                {% for answer in answers %}
+                {% for answer in page_obj %}
                     {% include "inc/answer_item.html" %}
                 {% endfor %}
                 {% include "inc/paginator.html" %}
