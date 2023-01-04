@@ -5,12 +5,16 @@ from django.http import HttpResponse
 
 
 def index(request):
-    context = {'questions': models.QUESTIONS, 'page_obj': listing(request, models.QUESTIONS)}
+    q_list = models.Question.objects.get_new_questions()
+    context = {'questions': q_list, 'page_obj': listing(request, q_list)}
+    # context = {'questions': models.Question, 'tags': models.Tag, 'page_obj': pagging(contact_list, request),
+    #           'profiles': models.Profile, 'likes': models.LikeQuestion}
     return render(request, 'index.html', context=context)
 
 
 def hotq(request):
-    context = {'questions': models.QUESTIONS, 'page_obj': listing(request, models.QUESTIONS)}
+    q_list = models.Question.objects.get_hot_questions()
+    context = {'questions': q_list, 'page_obj': listing(request, q_list)}
     return render(request, 'hotq.html', context=context)
 
 

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-2">
             <div class="avatar_100">
-                <img src="{% static question.img %}" alt=""/>
+                <img src="{% static question.user.avatar %}" alt=""/>
             </div>
         </div>
         <div class="col-10">
@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <div class="col-1">
-            <div class="likeCount">{{ question.likes }}</div>
+            <div class="likeCount">0</div>
         </div>
         <div class="col-3 ">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
