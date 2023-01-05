@@ -5,14 +5,11 @@ from django.http import Http404
 
 
 class QuestionManager(models.Manager):
-    def get_hot_questions(self):
-        return self.order_by('likes')
-
     def get_new_questions(self):
         return self.order_by('-date')
 
     def get_tagged_questions(self, tag):
-        return self.filter(tag__exact=tag)
+        return self.filter(tag__name=tag)
 
     def get_questions(self):
         return self.all()
@@ -44,10 +41,25 @@ class TagManager(models.Manager):
             raise Http404
         return vote
 
+    def get_tags_by_question(self, question):
+        return self.filter(question__exact=question)
+
+    def find_by_name(self, name):
+        return self.get(name__exact=name)
+
+
+class ProfileManager(models.Manager):
+    def find_by_user(self, user):
+        return self.get(user__exact=user)
+
+    def get_all(self):
+        return self.all()
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(blank=True, null=True, upload_to="uploads/profile/")
+    objects = ProfileManager()
 
 
 class Tag(models.Model):
@@ -64,6 +76,8 @@ class Question(models.Model):
     tag = models.ManyToManyField(Tag)
     user = models.ForeignKey(Profile, related_name='profile_related', on_delete=models.CASCADE, blank=True, null=True)
     date = models.DateTimeField(blank=True, null=True)
+    answers = 0
+    likes = 0
     objects = QuestionManager()
 
     def __str__(self):
@@ -74,6 +88,7 @@ class Answer(models.Model):
     text = models.TextField()
     user = models.ForeignKey(Profile, related_name='profile_related1', on_delete=models.CASCADE, blank=True, null=True)
     question = models.ForeignKey(Question, related_name='question_related', on_delete=models.CASCADE, blank=True, null=True)
+    likes = 0
     objects = AnswerManager()
 
 
@@ -99,27 +114,3 @@ class LikeAnswer(models.Model):
     answer = models.ForeignKey(Answer, models.CASCADE)
 
     objects = LikeAnswerManager()
-
-
-# Konstrukcii dlya dz2 ostavim na vsyakiy sluchai
-"""QUESTIONS = [
-    {
-        'id': question_id,
-        'title': f'Qustion {question_id}',
-        'text': f'Text voprosa nomer {question_id}',
-        'answers': question_id % 2,
-        'likes': question_id % 5,
-        'tags': ['tag' for i in range(question_id % 3)],
-        'img': f'img/avatar-{(question_id % 3) + 1}.jpg'
-    } for question_id in range(10)
-]
-
-
-ANSWERS = [
-    {
-        'id': answer_id,
-        'text': f'Text otveta nomer {answer_id}',
-        'likes': answer_id % 5,
-        'img': f'img/avatar-{(answer_id % 3) + 1}.jpg'
-    } for answer_id in range(5)
-]"""

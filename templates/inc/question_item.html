@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <div class="col-1">
-            <div class="likeCount">0</div>
+            <div class="likeCount">{{ question.likes }}</div>
         </div>
         <div class="col-3 ">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
@@ -30,7 +30,7 @@
             <a class="nav-link active" aria-current="page" href="{% url 'question' question_id=question.id %}" style="margin-top: 30px">answer({{ question.answers }})</a>
         </div>
         <div class="col-5">
-            {% include "inc/tag_item.html" %}
+            {% include "inc/tag_item.html" with tag=question.tag %}
         </div>
     </div>
 </div>
