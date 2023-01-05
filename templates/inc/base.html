@@ -61,21 +61,17 @@
                 <div class="container_t" style="margin-bottom:20px;">
                     <h1>Popular tags</h1>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a  href="{% url 'tag' tag_id='Tag0' %}">Tag0</a></li>
-                        <li class="list-group-item"><a  href="{% url 'tag' tag_id='Tag1' %}">Tag1</a></li>
-                        <li class="list-group-item"><a  href="{% url 'tag' tag_id='Tag2' %}">Tag2</a></li>
-                        <li class="list-group-item"><a  href="{% url 'tag' tag_id='Tag3' %}">Tag3</a></li>
-                        <li class="list-group-item"><a  href="{% url 'tag' tag_id='Tag4' %}">Tag4</a></li>
+                        {% for tag in pop_tags %}
+                        <li class="list-group-item"><a  href="{% url 'tag' tag_id=tag.name %}">{{ tag.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="container_t" style="margin-bottom:20px;">
                     <h1>Best members</h1>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Admin</li>
-                        <li class="list-group-item">User0</li>
-                        <li class="list-group-item">User1</li>
-                        <li class="list-group-item">User2</li>
-                        <li class="list-group-item">User3</li>
+                        {% for profile in best_users %}
+                            <li class="list-group-item">{{ profile.user.username }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

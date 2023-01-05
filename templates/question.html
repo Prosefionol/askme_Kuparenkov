@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-2" style="padding: 0px;">
                             <div class="avatar_150">
-                                <img src="{% static question.img %}" alt=""/>
+                                <img src="{% static question.user.avatar %}" alt=""/>
                             </div>
                         </div>
                         <div class="col-10">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            {% include "inc/tag_item.html" %}
+                            {% include "inc/tag_item.html" with tag=question.tag %}
                         </div>
                     </div>
                 </div>

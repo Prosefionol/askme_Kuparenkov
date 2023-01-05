@@ -3,11 +3,11 @@
     <ul class="nav">
         <li class="nav-item">
             <h5 style="margin-top:10px;">Tags:</h5>
-                {% for tag in question.tags %}
+            {% for tag in tag.all %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'tag' tag_id='Tag' %}">Tag</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'tag' tag_id=tag.name %}">{{ tag.name }}</a>
                 </li>
-                {% endfor %}
+            {% endfor %}
         </li>
     </ul>
 </div>
