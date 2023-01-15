@@ -1,5 +1,6 @@
 {% extends "inc/base.html" %}
 {% load static %}
+{% load bootstrap5 %}
 {% block content %}
 <!-- Begin page content -->
 <main class="flex-shrink-0">
@@ -7,21 +8,10 @@
         <div class="row" style="margin-left:60px;">
             <div class="col-8" style=" margin-top:30px;">
                 <h1>Login</h1>
-                <h5 style="color:red; margin-top:20px; margin-bottom: 20px">Some mistake!</h5>
-                <form>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput0" class="form-label">Login</label>
-                        <input type="text" maxlength="25" class="form-control" id="exampleFormControlInput0"
-                               placeholder="Your nickname" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password</label>
-                        <input type="password" maxlength="25" class="form-control" id="exampleFormControlInput1"
-                               placeholder="******" required>
-                    </div>
-                    <div class="ContainerWhite" style="margin-top:30px;">
-                        <button type="submit" class="btn btn-primary">Log in!</button>
-                    </div>
+                <form novalidate action="/login" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form  form %}
+                    <button type="submit" class="btn btn-success">Log in!</button>
                 </form>
                 <div class="ContainerWhite" style="margin-top:30px;">
                     <a href="{% url 'register' %}" class="link-primary" style="margin-top:5px;">Create new account!</a>
