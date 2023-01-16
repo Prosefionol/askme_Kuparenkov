@@ -9,6 +9,7 @@ from django.http import HttpResponse
 
 t_list = models.Tag.objects.get_all()
 p_list = models.Profile.objects.get_all()
+saved_path = ""
 
 
 def set_parameters(q_list):
@@ -62,9 +63,12 @@ def ask(request):
 
 
 def login(request):
+    global saved_path
     context = {'pop_tags': t_list[:5], 'best_users': p_list[:5], 'auth_user': models.AuthorizedUser}
     if request.method == "GET":
         form = forms.LoginForm()
+        path = request.META.get('HTTP_REFERER')[22:]
+        saved_path = path
     if request.method == "POST":
         form = forms.LoginForm(request.POST)
         if form.is_valid():
@@ -72,11 +76,21 @@ def login(request):
             if user:
                 models.AuthorizedUser.profile = models.Profile.objects.find_by_user(user)
                 models.AuthorizedUser.is_authorized = True
-                return redirect(reverse("index"))
+                if saved_path == "":
+                    return redirect(reverse("index"))
+                else:
+                    if saved_path[0] == 'q':
+                        number = int(saved_path[9:])
+                        return redirect(reverse("question", args=[number]))
+                    else:
+                        if saved_path[0] == 't':
+                            return redirect(reverse("tag", args=[saved_path[4:]]))
+                        else:
+                            return redirect(reverse(saved_path))
             else:
                 form.add_error(None, 'Invalid username or password!')
-        context.update({'Invalid': True, 'Exception': form.errors, 'form': form})
-        print(form.errors)
+                context.update({'Invalid': True, 'Exception': form.errors, 'form': form})
+                print(form.errors)
     context.update({'form': form})
     return render(request, 'login.html', context=context)
 
@@ -89,6 +103,20 @@ def logout(request):
 
 def register(request):
     context = {'pop_tags': t_list[:5], 'best_users': p_list[:5], 'auth_user': models.AuthorizedUser}
+    if request.method == "GET":
+        form = forms.RegisterForm()
+    if request.method == "POST":
+        form = forms.RegisterForm(request.POST)
+        if form.is_valid():
+            profile = form.save()
+            if profile:
+                models.AuthorizedUser.profile = profile
+                models.AuthorizedUser.is_authorized = True
+                return redirect(reverse("index"))
+            else:
+                form.add_error(None, 'Invalid data error!')
+                context.update({'Invalid': True, 'Exception': form.errors})
+    context.update({'form': form})
     return render(request, 'register.html', context=context)
 
 
