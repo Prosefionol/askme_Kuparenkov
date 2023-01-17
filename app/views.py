@@ -38,14 +38,29 @@ def hotq(request):
 
 
 def question(request, question_id: int):
+    context = {}
+    if request.method == "GET":
+        form = forms.AnswerForm()
+
+    if request.method == "POST":
+        if not models.AuthorizedUser.is_authorized:
+            return redirect(reverse("login"))
+        form = forms.AnswerForm(request.POST)
+        if form.is_valid():
+            form.respond(question_id)
+            return redirect(reverse('question', args=[question_id]))
+        context.update({'Invalid': True, 'Exception': form.errors})
+        print(form.errors)
+
     question_item = models.Question.objects.find_by_id(question_id)
     question_item.answers = models.Answer.objects.get_answers_count(question_item)
     question_item.likes = models.LikeQuestion.objects.get_questions_likes(question_item)
     answs = models.Answer.objects.get_answers(question_item)
     for answer in answs:
         answer.likes = models.LikeAnswer.objects.get_answers_likes(answer)
-    context = {'question': question_item, 'answers': answs, 'page_obj': listing(request, answs),
-               'pop_tags': t_list[:5], 'best_users': p_list[:5], 'auth_user': models.AuthorizedUser}
+    context.update({'form': form})
+    context.update({'question': question_item, 'answers': answs, 'page_obj': listing(request, answs),
+                    'pop_tags': t_list[:5], 'best_users': p_list[:5], 'auth_user': models.AuthorizedUser})
     return render(request, 'question.html', context=context)
 
 

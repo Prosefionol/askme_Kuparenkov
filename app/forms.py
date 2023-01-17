@@ -62,3 +62,14 @@ class AskForm(forms.Form):
                     t_model = models.Tag.objects.create(name=tag)
                     question.tag.add(t_model)
         return question.id
+
+
+class AnswerForm(forms.Form):
+    text = forms.CharField(max_length=200, widget=forms.Textarea)
+
+    def respond(self, question_id):
+        models.Answer.objects.create(
+            text=self.cleaned_data['text'],
+            user=models.AuthorizedUser.profile,
+            question=models.Question.objects.find_by_id(question_id)
+        )

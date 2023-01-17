@@ -1,5 +1,6 @@
 {% extends "inc/base.html" %}
 {% load static %}
+{% load bootstrap5 %}
 {% block content %}
 <!-- Begin page content -->
 <main class="flex-shrink-0">
@@ -46,11 +47,9 @@
                 {% include "inc/paginator.html" %}
                 <div class="mb-3 pb-2 mb-4  border-top border-3 border-secondary"
                      style="padding-top:30px; margin-top:30px; width: 852px;">
-                    <form>
-                        <div class="mb-3">
-                            <textarea class="form-control" maxlength="200"  id="exampleFormControlTextarea2" rows="6"
-                                      placeholder="Enter your answer here..." required></textarea>
-                        </div>
+                    <form novalidate action="{% url 'question' question_id=question.id %}" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form  form %}
                         <button type="submit" class="btn btn-primary">Answer!</button>
                     </form>
                 </div>
