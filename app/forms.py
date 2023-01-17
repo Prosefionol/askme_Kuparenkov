@@ -37,3 +37,28 @@ class RegisterForm(forms.Form):
         profile = models.Profile(user=user, nick=nick)
         profile.save()
         return profile
+
+
+class AskForm(forms.Form):
+    title = forms.CharField(max_length=25)
+    text = forms.CharField(max_length=200, widget=forms.Textarea)
+    tags = forms.CharField(max_length=200)
+
+    def ask(self):
+        question = models.Question.objects.create(
+            user=models.AuthorizedUser.profile,
+            title=self.cleaned_data['title'],
+            text=self.cleaned_data['text'],
+            date=datetime.today()
+        )
+        tags = self.cleaned_data["tags"]
+        for tag in tags.split(", "):
+            print(tag)
+            if len(tag) < 25:
+                if models.Tag.objects.filter(name=tag):
+                    t_model = models.Tag.objects.find_by_name(tag)
+                    question.tag.add(t_model)
+                else:
+                    t_model = models.Tag.objects.create(name=tag)
+                    question.tag.add(t_model)
+        return question.id

@@ -59,6 +59,16 @@ def tag(request, tag_id: str):
 
 def ask(request):
     context = {'pop_tags': t_list[:5], 'best_users': p_list[:5], 'auth_user': models.AuthorizedUser}
+    if not models.AuthorizedUser.is_authorized:
+        return redirect(reverse("login"))
+    if request.method == "GET":
+        form = forms.AskForm()
+    if request.method == "POST":
+        form = forms.AskForm(request.POST)
+        if form.is_valid():
+            return redirect(reverse('question', args=[form.ask()]))
+        context.update({'Invalid': True, 'Exception': form.errors})
+    context.update({'form': form})
     return render(request, 'ask.html', context=context)
 
 
