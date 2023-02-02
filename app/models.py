@@ -58,7 +58,8 @@ class ProfileManager(models.Manager):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(blank=True, null=True, upload_to="uploads/profile/")
+    avatar = models.ImageField(blank=True, null=True, upload_to="static/uploads/profile/")
+    nick = models.CharField(max_length=25, null=True)
     objects = ProfileManager()
 
 
@@ -114,3 +115,8 @@ class LikeAnswer(models.Model):
     answer = models.ForeignKey(Answer, models.CASCADE)
 
     objects = LikeAnswerManager()
+
+
+class AuthorizedUser:
+    profile = None
+    is_authorized = False

@@ -1,5 +1,6 @@
 {% extends "inc/base.html" %}
 {% load static %}
+{% load bootstrap5 %}
 {% block content %}
 <!-- Begin page content -->
 <main class="flex-shrink-0">
@@ -7,22 +8,9 @@
         <div class="row" style="margin-left:60px;">
             <div class="col-8" style=" margin-top:30px">
                 <h1 style=" margin-bottom:30px;">New Question</h1>
-                <h5 style="color:red; margin-top:20px; margin-bottom: 20px">Some mistakes!</h5>
-                <form>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Title</label>
-                        <input type="text" maxlength="25" class="form-control" id="exampleFormControlInput1"
-                               placeholder="Title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea2" class="form-label">Text</label>
-                        <textarea class="form-control" maxlength="200" id="exampleFormControlTextarea2" rows="6"  required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput3" class="form-label">Tags</label>
-                        <input type="text" maxlength="25" class="form-control" id="exampleFormControlInput3"
-                               placeholder="Tags">
-                    </div>
+                <form novalidate action="/ask" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form  form %}
                     <button type="submit" class="btn btn-primary">Ask!</button>
                 </form>
             </div>
