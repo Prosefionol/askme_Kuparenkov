@@ -1,49 +1,76 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from . import models
+from operator import attrgetter
 from django.http import HttpResponse
+
+t_list = models.Tag.objects.get_all()
+p_list = models.Profile.objects.get_all()
+
+
+def set_parameters(q_list):
+    for q in q_list:
+        q.answers = models.Answer.objects.get_answers_count(q)
+        q.likes = models.LikeQuestion.objects.get_questions_likes(q)
+    return q_list
 
 
 def index(request):
-    context = {'questions': models.QUESTIONS, 'page_obj': listing(request, models.QUESTIONS)}
+    q_list = models.Question.objects.get_new_questions()
+    q_list = set_parameters(q_list)
+    context = {'questions': q_list, 'page_obj': listing(request, q_list), 'tags': t_list,
+               'pop_tags': t_list[:5], 'best_users': p_list[:5]}
     return render(request, 'index.html', context=context)
 
 
 def hotq(request):
-    context = {'questions': models.QUESTIONS, 'page_obj': listing(request, models.QUESTIONS)}
+    q_list = models.Question.objects.get_questions()
+    q_list = set_parameters(q_list)
+    q_list = sorted(q_list, key=attrgetter('likes'))
+    q_list.reverse()
+    context = {'questions': q_list, 'page_obj': listing(request, q_list), 'tags': t_list,
+               'pop_tags': t_list[:5], 'best_users': p_list[:5]}
     return render(request, 'hotq.html', context=context)
 
 
 def question(request, question_id: int):
-    if question_id >= len(models.QUESTIONS):
-        context_a = {'maxsize': len(models.QUESTIONS)}
-        return render(request, 'error.html', context=context_a)
-    else:
-        question_item = models.QUESTIONS[question_id]
-        context_b = {'question': question_item, 'answers': models.ANSWERS,
-                     'page_obj': listing(request, models.ANSWERS)}
-        return render(request, 'question.html', context=context_b)
+    question_item = models.Question.objects.find_by_id(question_id)
+    question_item.answers = models.Answer.objects.get_answers_count(question_item)
+    question_item.likes = models.LikeQuestion.objects.get_questions_likes(question_item)
+    answs = models.Answer.objects.get_answers(question_item)
+    for answer in answs:
+        answer.likes = models.LikeAnswer.objects.get_answers_likes(answer)
+    context = {'question': question_item, 'answers': answs, 'page_obj': listing(request, answs),
+               'pop_tags': t_list[:5], 'best_users': p_list[:5]}
+    return render(request, 'question.html', context=context)
 
 
 def tag(request, tag_id: str):
-    context = {'tag': tag_id, 'questions': models.QUESTIONS, 'page_obj': listing(request, models.QUESTIONS)}
+    q_list = models.Question.objects.get_tagged_questions(tag_id)
+    q_list = set_parameters(q_list)
+    context = {'questions': q_list, 'page_obj': listing(request, q_list), 'tags': t_list, 't_id': tag_id,
+               'pop_tags': t_list[:5], 'best_users': p_list[:5]}
     return render(request, 'tag.html', context=context)
 
 
 def ask(request):
-    return render(request, 'ask.html')
+    context = {'pop_tags': t_list[:5], 'best_users': p_list[:5]}
+    return render(request, 'ask.html', context=context)
 
 
 def login(request):
-    return render(request, 'login.html')
+    context = {'pop_tags': t_list[:5], 'best_users': p_list[:5]}
+    return render(request, 'login.html', context=context)
 
 
 def register(request):
-    return render(request, 'register.html')
+    context = {'pop_tags': t_list[:5], 'best_users': p_list[:5]}
+    return render(request, 'register.html', context=context)
 
 
 def settings(request):
-    return render(request, 'settings.html')
+    context = {'pop_tags': t_list[:5], 'best_users': p_list[:5]}
+    return render(request, 'settings.html', context=context)
 
 
 def listing(request, pagList):
